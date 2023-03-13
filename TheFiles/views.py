@@ -27,7 +27,7 @@ def FederationCreate(request):
 
 @api_view(['GET'])
 def FederationDetail(request, pk):
-	federation = Federation.objects.get(pk=pk)
+	federation = Federation.objects.get(superID=pk)
 
 	serializer = FederationSerializer(federation, many=False)
 	return Response(serializer.data)
@@ -46,7 +46,7 @@ def FederationList(request):
 
 @api_view(['POST'])
 def FederationUpdate(request, pk):
-	federation = Federation.objects.get(pk=pk)
+	federation = Federation.objects.get(superID=pk)
 	serializer = FederationSerializer(instance=federation, data=request.data)
 
 	if serializer.is_valid():

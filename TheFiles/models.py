@@ -3,8 +3,9 @@ from django.contrib.auth.models import User
 
 class Federation(models.Model):
     FedId = models.AutoField(primary_key=True,blank=False,null=False,auto_created=True)
-    superID = models.IntegerField(default=0, blank=True, null=True)
+    superID = models.IntegerField(blank=True, null=True)
     FederationName = models.TextField(max_length=100)
+    from datetime import date, datetime
     
   
     OfficialLetterhead = models.FileField(upload_to='TheFiles/files',blank=True, null=True)
@@ -15,7 +16,7 @@ class Federation(models.Model):
     Tax_Clearance_Copy =  models.FileField(upload_to='TheFiles/files',blank=True, null=True)
     Child_Protection_Policies = models.CharField(max_length=3, default='Yes')
     Child_Protection_Copy =  models.FileField(upload_to='TheFiles/files',blank=True, null=True)
-    
+    yearUpdate = models.CharField(max_length=4,default=str(datetime.now().year))
     #id_OfficialLetterhead
     #id_Constitution
     #id_last_AGM_Minutes
