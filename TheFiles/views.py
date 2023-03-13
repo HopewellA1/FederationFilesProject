@@ -32,6 +32,27 @@ def FederationDetail(request, pk):
 	serializer = FederationSerializer(federation, many=False)
 	return Response(serializer.data)
 
+
+
+@api_view(['GET'])
+def FederationList(request):
+	
+	federation = Federation.objects.all()
+	serializer = FederationSerializer(federation, many=True)
+	#taskTest = Task.objects.all(user = user)
+
+	return Response(serializer.data)
+
+
+@api_view(['POST'])
+def FederationUpdate(request, pk):
+	federation = Federation.objects.get(pk=pk)
+	serializer = FederationSerializer(instance=federation, data=request.data)
+
+	if serializer.is_valid():
+		serializer.save()
+
+	return Response(serializer.data)
 #creating federation
 
 def createFed(request):
@@ -47,6 +68,7 @@ def createFed(request):
        # while attempt_num < MAX_RETRIES:
             url = 'http://kznsannualreport.pythonanywhere.com/FederationCreate/'
             payload = {
+                #FedId
                 'SARS_Tax_Clearance':request.POST["SARS_Tax_Clearance"],
                  'Child_Protection_Policies':request.POST["Child_Protection_Policies"],
                     'superID':3,
@@ -78,6 +100,7 @@ def createFed(request):
     
 def viewFed(request, fedId):
     url = 'http://kznsannualreport.pythonanywhere.com/FederationDetail/'+str(fedId)+'/'
+    
     r = requests.get(url)
     print("Before R")
     print(r.json())

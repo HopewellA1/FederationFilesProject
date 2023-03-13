@@ -16,4 +16,8 @@ class Federation(models.Model):
     Child_Protection_Policies = models.CharField(max_length=3, default='Yes')
     Child_Protection_Copy =  models.FileField(upload_to='TheFiles/files',blank=True, null=True)
     
+    #id_OfficialLetterhead
+    #id_Constitution
+    #id_last_AGM_Minutes
+    #
 

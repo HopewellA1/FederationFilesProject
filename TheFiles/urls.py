@@ -10,7 +10,9 @@ urlpatterns = [
     path('createFed', views.createFed, name="createFed"),
     path('FedList', views.FedList, name="FedList"),
     path('FederationDetail/<int:pk>/', views.FederationDetail, name="FederationDetail"),
-    path('viewFed/<int:fedId>',views.viewFed, name="viewFed")
+    path('viewFed/<int:fedId>',views.viewFed, name="viewFed"),
+    path('FederationList',views.FederationList, name="FederationList"),
+    path('FederationUpdate/<int:pk>', views.FederationUpdate, name="FederationUpdate")
     
     
 	# path('', views.apiOverview, name="api-overview"),
